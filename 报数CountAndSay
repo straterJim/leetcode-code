@@ -1,0 +1,26 @@
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        if n == 1:
+            return "1"
+        if n == 2:
+            return "11"
+        nlist="11"
+        for i in range(3,n+1):
+            temp=[]
+            count=1
+            alist=[]
+            for j in range(len(nlist)):
+                temp.append(nlist[j])
+            for k in range(len(temp)-1):
+                if temp[k]==temp[k+1]:
+                    count=count+1
+                else:
+                    alist.append(str(count))
+                    alist.append(str(temp[k]))
+                    count=1
+            if temp[-1] != temp[-2] or count>1:
+                alist.append(str(count))
+                alist.append(str(temp[-1]))
+                count=1
+            nlist="".join(alist)
+        return nlist
