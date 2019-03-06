@@ -65,10 +65,9 @@ class MyCircularQueue:
         """
         Checks whether the circular queue is full or not.
         """
-        for i in range(self.size):
-            if self.queue[i] == None:
-                return False
-        return True
+        if self.f == None:
+            return False
+        return ((self.f-self.r)%self.size == 1) and  (self.queue[self.r] != None)
         
 
 
