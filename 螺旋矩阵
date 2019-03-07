@@ -1,0 +1,65 @@
+ class Solution:
+    def spiralOrder(self, matrix):
+        count = 0
+        m= len(matrix)
+        a=0
+        b=0
+        l = []
+        if m==0:
+            return []
+        elif m==1:
+            return matrix[0]
+        else:
+            n= len(matrix[0])
+        while(matrix[a][b] != None):
+            if count%4 == 0:
+                for i in range(a,n):
+                    if(matrix[a][i] != None):
+                        l.append(matrix[a][i])
+                        matrix[a][i]=None
+                        b=i
+                    else:
+                        b=i-1
+                        break
+                a=a+1
+                count=count+1
+            elif count%4 == 1:
+                for i in range(a,m):
+                    if (matrix[i][b] != None):
+                        l.append(matrix[i][b])
+                        matrix[i][b]=None
+                        a=i
+                    else:
+                        a=i-1
+                        break
+                b=b-1
+                count=count+1
+            elif count%4 == 2:
+                for i in range(b,-1,-1):
+                    if (matrix[a][i] != None):
+                        l.append(matrix[a][i])
+                        matrix[a][i]=None
+                        b=i
+                    else:
+                        b=i+1
+                        break
+                a=a-1
+                count=count+1
+            else:
+                for i in range(a,-1,-1):
+                    if (matrix[i][b] != None):
+                        l.append(matrix[i][b])
+                        matrix[i][b]=None
+                        a=i
+                    else:
+                        a=i+1
+                        break
+                b=b+1
+                count=count+1
+        return l
+
+
+if __name__ == "__main__":
+	obj=Solution()
+	t=obj.spiralOrder([[1]])
+	print(t)
