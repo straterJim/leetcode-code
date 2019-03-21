@@ -1,0 +1,34 @@
+class Solution:
+    def maxProfit(self, prices):
+    '暴力解法
+        length=len(prices)
+        if length < 2:
+            return 0
+        elif length == 2:
+            if prices[0]<prices[1]:
+                return prices[1]-prices[0]
+            else:
+                return 0
+        sum=0
+        i=0
+        while(i<length-1):
+            if prices[i+1]<prices[i]:
+                i=i+1
+                continue
+            else:
+                j=i+1
+                while(j<length):
+                    if j==length-1 or prices[j]>prices[j+1]:
+                        sum=sum+prices[j]-prices[i]
+                        i=j+1
+                        break
+                    j=j+1
+        return sum
+    def bettermethod(self, prices):
+        length= len(prices)
+        sum=0
+        i=0
+        for i in range(length-1):
+            if prices[i]<prices[i+1]:
+                sum=sum+prices[i+1]-prices[i]
+        return sum
