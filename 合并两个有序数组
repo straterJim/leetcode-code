@@ -1,0 +1,19 @@
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        i = 0
+        j = 0
+        a=nums1[:m]
+        b=nums2[:n]
+        while(i < m+j  and j < n):
+            if a[i] >= b[j]:
+                a.insert(i,b[j])
+                j=j+1
+                continue
+            i=i+1
+        if j < n:
+            a= a+b[j:n]
+        for k in range(len(a)):
+            nums1[k] = a[k]
