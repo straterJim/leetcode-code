@@ -1,0 +1,24 @@
+#最直接的方法
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        dictionary={}
+        for i in range(len(nums)):
+            dictionary.setdefault(nums[i],0)
+            dictionary[nums[i]]+=1
+        for key in dictionary.keys():
+            if dictionary[key] > len(nums)/2:
+                return key
+#摩尔投票法
+#相同加一，相异减一，最后得到的肯定是超过一半的数
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        count = 1
+        maj = nums[0]
+        for i in range(1,len(nums)):
+            if nums[i] == maj:
+                count=count+1
+            else:
+                count = count-1
+                if count == 0:
+                    maj = nums[i+1]
+        return maj
